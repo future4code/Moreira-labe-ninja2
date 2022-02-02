@@ -20,4 +20,5 @@ export const palette = {
     string: {
         main: '#d5c6e0',
     }
-  } 
+}
+master
