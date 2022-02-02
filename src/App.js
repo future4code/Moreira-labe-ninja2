@@ -18,29 +18,34 @@ import "./geral.css";
 
 class App extends React.Component {
 	state = {
-		page: 'home'		
+		page: 'detalhes',
+		detalhesId: "",
 	}
-	
-nextCadastro = () => {
-	this.setState({page: 'cadastro'})
-}
-nextContratar = () => {
-	this.setState({page: 'contratar'})
-}
+
+	nextCadastro = () => {
+		this.setState({ page: 'cadastro' })
+	}
+	nextContratar = () => {
+		this.setState({ page: 'contratar' })
+	}
+
+	setDetailsId = (id) => {
+		this.setState({ detalhesId: id })
+	}
 
 	render() {
 		const pagina = () => {
 			switch (this.state.page) {
 				case 'home':
-					return <Home nextCadastro={this.nextCadastro} nextContratar={this.nextContratar}/>
+					return <Home nextCadastro={this.nextCadastro} nextContratar={this.nextContratar} />
 				case 'contratar':
-					return <Contratar />
+					return <Contratar setDetailsId={(id) => this.state.setDetailsId(id)} />
 				case 'cadastro':
 					return <Cadastro />
 				case 'carrinho':
 					return <Carrinho />
 				case 'detalhes':
-					return <Detalhes />
+					return <Detalhes idJob={this.state.detalhesId} />
 				default:
 					return <Home />
 			}
