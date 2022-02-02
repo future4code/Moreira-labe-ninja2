@@ -1,7 +1,17 @@
 import { Button } from '@material-ui/core';
+import Axios from 'axios';
 import React, { Component } from 'react';
 
 export default class Detalhes extends Component {
+  state = {
+    listaDetalhe: []
+  }
+
+  GetAllJobs = () => {
+    Axios.get()
+  }
+
+
   render() {
     return (
         <div>
