@@ -11,6 +11,7 @@ import Carrinho from './pages/Carrinho';
 import Detalhes from './pages/Detalhes';
 import Footer from './components/Footer';
 import "./geral.css";
+import {Container, Body} from './components/styleGeral'
 
 
 //Para instalar o Desing Material: npm install @material-ui/core
@@ -48,10 +49,12 @@ nextContratar = () => {
 
 		return (
 			<ThemeProvider theme={theme}>
-				<AppContainer />
-				{pagina()}
-
-				<Footer />
+				<Container>
+					<Body>
+						{pagina()}
+					</Body>
+					<Footer />
+				</Container>
 			</ThemeProvider>
 
 		)

@@ -1,16 +1,18 @@
 import styled from 'styled-components';
 import { palette } from '../constants/colors';
-import { makeStyles } from '@material-ui/core/styles';
-import {theme} from '../constants/theme'
 
 export const Container = styled.div`
-  min-width: 100vw;
-  max-width: 100vw;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  .alertSuccess{
+    background-color: ${palette.sucess.main}
+  }
+  .alertError{
+    background-color: ${palette.error.main}
+  }
 `
 
 
@@ -38,14 +40,3 @@ export const Box = styled.div`
       max-width: 100%;
   }
 `
-
-export const useStyles = makeStyles((theme) => ({
-    formControl: {
-      margin: 5,
-      minWidth: 120,
-      maxWidth: 300,
-    },
-    noLabel: {
-      marginTop: 5,
-    },
-  }));

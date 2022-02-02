@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Box, useStyles } from '../components/StyledCadastro';
+import { Container, Box } from '../components/StyledCadastro';
 import { Button, FormControl } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import TextField from '@material-ui/core/TextField';
@@ -85,13 +85,13 @@ export default class Cadastro extends Component {
   render() {
     const mostrarMessagem = () =>{
       if (this.state.messagem.opcao === 1){
-        return(<Alert color='success' severity="success"
+        return(<Alert className='alertSuccess' variant="filled" severity="success"
         onClose={() => {this.setState({mostrarAlerta: false})}}>
           <AlertTitle>Success</AlertTitle>
           {this.state.messagem.msg}
           </Alert>)
       } else if (this.state.messagem.opcao === 2) {
-        return(<Alert color='error' severity="error" onClose={() => {this.setState({mostrarAlerta: false})}}>
+        return(<Alert className='alertError' variant="filled" severity="error" onClose={() => {this.setState({mostrarAlerta: false})}}>
           <AlertTitle>Error</AlertTitle>
           {this.state.messagem.msg}
           </Alert>)
