@@ -18,15 +18,21 @@ import "./geral.css";
 
 class App extends React.Component {
 	state = {
-		page: 'home'
+		page: 'home'		
 	}
-
+	
+nextCadastro = () => {
+	this.setState({page: 'cadastro'})
+}
+nextContratar = () => {
+	this.setState({page: 'contratar'})
+}
 
 	render() {
 		const pagina = () => {
 			switch (this.state.page) {
 				case 'home':
-					return <Home />
+					return <Home nextCadastro={this.nextCadastro} nextContratar={this.nextContratar}/>
 				case 'contratar':
 					return <Contratar />
 				case 'cadastro':
