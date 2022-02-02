@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppContainer } from './components/AppContainer'
 import { ThemeProvider } from '@material-ui/core/styles'
-import {theme} from './constants/theme'
+import { theme } from './constants/theme'
 import Button from '@material-ui/core/Button';
 import { render } from '@testing-library/react';
 import Home from './pages/Home';
@@ -9,6 +9,9 @@ import Contratar from './pages/Contratar';
 import Cadastro from './pages/Cadastro';
 import Carrinho from './pages/Carrinho';
 import Detalhes from './pages/Detalhes';
+import Footer from './components/Footer';
+import "./geral.css";
+
 
 //Para instalar o Desing Material: npm install @material-ui/core
 //Para instalar o Desing Material: npm install @material-ui/icons
@@ -19,9 +22,9 @@ class App extends React.Component {
 	}
 
 
-	render(){
+	render() {
 		const pagina = () => {
-			switch(this.state.page){
+			switch (this.state.page) {
 				case 'home':
 					return <Home />
 				case 'contratar':
@@ -38,12 +41,15 @@ class App extends React.Component {
 		}
 
 		return (
-		<ThemeProvider theme={theme}>
-		<AppContainer />
-		{pagina()}
-		</ThemeProvider>
-			
-		)}
+			<ThemeProvider theme={theme}>
+				<AppContainer />
+				{pagina()}
+
+				<Footer />
+			</ThemeProvider>
+
+		)
+	}
 }
 
 export default App
