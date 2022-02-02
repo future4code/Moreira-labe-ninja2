@@ -41,8 +41,8 @@ export default class Home extends Component {
         <ContainerHome>
           <img className='imgHome' src={ninja} alt='imagem ninja'/>
           <div className='botaoHome'>
-          <Button className='botao' variant='contained'color='primary'>Quero ser um Ninja</Button>          
-          <Button className='botao' variant='contained'color='primary'>Contratar um Ninja</Button>
+          <Button className='botao' variant='contained'color='primary' onClick={this.props.nextCadastro}>Quero ser um Ninja</Button>          
+          <Button className='botao' variant='contained'color='primary' onClick={this.props.nextContratar}>Contratar um Ninja</Button>
           </div>
          
         </ContainerHome>
