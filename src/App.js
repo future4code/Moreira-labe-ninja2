@@ -7,7 +7,7 @@ import { render } from '@testing-library/react';
 import Home from './pages/Home';
 import Contratar from './pages/Contratar';
 import Cadastro from './pages/Cadastro';
-import Carrinho from './pages/Carrinho';
+import Carrinho from './pages/Carrinho/Carrinho';
 import Detalhes from './pages/Detalhes';
 import Footer from './components/Footer';
 import "./geral.css";
