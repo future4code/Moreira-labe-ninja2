@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core';
-import Axios from 'axios';
+import axios from 'axios';
 import React, { Component } from 'react';
 
 export default class Detalhes extends Component {
@@ -8,7 +8,7 @@ export default class Detalhes extends Component {
   }
 
   GetAllJobs = () => {
-    Axios.get()
+    
   }
 
 
