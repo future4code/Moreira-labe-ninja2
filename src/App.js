@@ -15,7 +15,7 @@ import Detalhes from './pages/Detalhes';
 
 class App extends React.Component {
 	state = {
-		page: 'detalhes'		
+		page: 'contratar'		
 	}
 	
 nextCadastro = () => {

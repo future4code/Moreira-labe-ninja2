@@ -9,3 +9,14 @@ export const createJob = (body, funcao) =>{
     .catch((err)=>{funcao(2 , err.response.data.message)
         })
 }
+
+export const getAllJobs = (funcao) =>{
+    const url = `${baseURL}jobs`
+    axios.get(url,{headers})
+    .then((resp)=>{
+        funcao(resp.data.jobs)
+    })
+    .catch((err)=>{
+        alert('Erro. Tente Novamente!')
+    })
+  }
