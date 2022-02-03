@@ -1,26 +1,10 @@
 import React, { Component } from 'react';
-import Styled from 'styled-components';
+import { ContainerGeral, ContainerTotalContratar, InfosGerais, ListaJobs } from '../../components/LayoutCarrinho';
 import { JobsTempFakes } from '../../constants/TempJobsFakes';
 import ItensCarrinho from './ItensCarrinho';
+import {Button} from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
 
-const ContainerSacola = Styled.section`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  margin: 16px;
-`
-
-const InfoGeralSacola = Styled.section`
-  border: 1px solid black;
-  width: 300px;
-  padding: 10px;
-  font-family: arial;
-`
-
-const ListaProdutos = Styled.section`
-  display: grid;
-  gap: 10px;
-  text-align: left;
-`
 
 export default class Carrinho extends React.Component {
 
@@ -107,20 +91,25 @@ export default class Carrinho extends React.Component {
                 key={job.id}
                 quantidade={job.quantidade}
                 tituloJob={job.title}
+                preco={job.price}
                 onClick={() => this.removerJobsDoCarrinho(job)}
 
             />
         })
         return (
-            <ContainerSacola>
-                <InfoGeralSacola>
-                    <h3>Carrinho:</h3>
-                    <p>Total: R$ {this.state.valorTotal}</p>
-                    <ListaProdutos>
+            <ContainerGeral>
+                <InfosGerais>
+                    <ListaJobs>
                         {jobsDoCarrinho}
-                    </ListaProdutos>
-                </InfoGeralSacola>
-            </ContainerSacola>
+                    </ListaJobs>
+                    <ContainerTotalContratar>
+                        <p><b>Total</b>: R$ {this.state.valorTotal}</p>
+                        <Button variant="contained" endIcon={<SendIcon />}>
+                            Contratar
+                        </Button>
+                    </ContainerTotalContratar>
+                </InfosGerais>
+            </ContainerGeral>
         )
     }
 } 
