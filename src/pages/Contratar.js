@@ -1,79 +1,165 @@
-import React, { Component } from 'react';
-import BasicSelect, { BuscaPorTermos, BuscaValorMaximo, BuscaValorMinimo } from '../components/PageContratarLayoutGeral'
-import { ContainerFiltros, ContainerBuscaValores, ContainerCards } from '../components/PageContratarLayoutGeral';
-import { Button } from '@material-ui/core';
-import {getAllJobs} from '../services/integracoes';
-
+import React, { Component } from "react";
+import {
+  ContainerFiltros,
+  ContainerBuscaValores,
+  ContainerCards,
+} from "../components/PageContratarLayoutGeral";
+import { getAllJobs } from "../services/integracoes";
+import Box from "@material-ui/core/Box";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
 
 export default class Contratar extends Component {
   state = {
-    listJobs: []
-  }
+    listJobs: [],
+    inputSelect: "",
+    inputValMin: "",
+    inputValMax: "",
+    inputBusca: "",
+  };
 
-  componentDidMount(){
-    getAllJobs(this.atualizarJobs)
+  componentDidMount() {
+    getAllJobs(this.atualizarJobs);
   }
 
   atualizarJobs = (dados) => {
-    this.setState({listJobs: dados})
-  }
- 
+    this.setState({ listJobs: dados });
+  };
+
+  handleChange = (event) => {
+    this.setState({ inputSelect: event.target.value });
+  };
+
+  valorMinChange = (event) => {
+    this.setState({ inputValMin: event.target.value });
+  };
+
+  valorMaxChange = (event) => {
+    this.setState({ inputValMax: event.target.value });
+  };
+
+  buscaChange = (event) => {
+    this.setState({ inputBusca: event.target.value });
+  };
+
   render() {
-    //console.log(this.state.listJobs)
-    const newJobs = this.state.listJobs.map((service)=>{
-      return (
-        <div key={service.id}>
-          <h3>{service.title}</h3> 
-          <p>{service.description}</p>
-          <p>{service.price}</p>
-          <p>{service.paymentMethods}</p>
-        </div>  
-      )              
-  })
+    const newJobs = () => {
+      let novaLista = [...this.state.listJobs];
+      if (this.state.inputValMin) {
+        novaLista = novaLista.filter((item) => {
+          return item.price >= this.state.inputValMin;
+        });
+      }
+
+      if (this.state.inputValMax) {
+        novaLista = novaLista.filter((item) => {
+          return item.price <= this.state.inputValMax;
+        });
+      }
+
+      if (this.state.inputBusca) {
+        novaLista = novaLista.filter((item) => {
+          return item.title.toLowerCase().includes(this.state.inputBusca.toLowerCase());
+        });
+      }
+      if (this.state.inputSelect === 'crescente'){
+        novaLista.sort((a,b)=>{return a.price-b.price});
+      } else if (this.state.inputSelect === 'decrescente'){
+        novaLista.sort((a,b)=>{return b.price-a.price});
+      } else if (this.state.inputSelect === 'alfabetica'){
+        novaLista.sort((a, b) => {
+                if (a.title.toLowerCase() > b.title.toLowerCase()) {
+                  return 1;
+                }
+                if (a.title.toLowerCase() < b.title.toLowerCase()) {
+                  return -1;
+                }
+                // a must be equal to b
+                return 0;
+              });
+      } else if (this.state.inputSelect === 'prazo'){
+        novaLista.sort((a, b) => {
+                const data1 = new Date(a.dueDate)
+                const data2 = new Date(b.dueDate)
+                return data1 - data2
+              });
+      }
+
+      return novaLista.map((service) => {
+        return (
+          <div key={service.id}>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <p>{service.price}</p>
+            <p>{service.paymentMethods}</p>
+            <p>{service.dueDate}</p>
+          </div>
+        );
+      });
+    };
     return (
       <div>
         <ContainerFiltros>
           <ContainerBuscaValores>
-            <BuscaValorMinimo />
-            <BuscaValorMaximo />
+            <Box>
+              <TextField
+                value={this.state.inputValMin}
+                onChange={this.valorMinChange}
+                type="number"
+                id="filled-basic"
+                label="Valor mínimo"
+                variant="filled"
+                inputProps={{ style: { height: "1px" } }}
+              />
+            </Box>
+            <Box>
+              <TextField
+                value={this.state.inputValMax}
+                onChange={this.valorMaxChange}
+                type="number"
+                id="filled-basic"
+                label="Valor máximo"
+                variant="filled"
+                inputProps={{ style: { height: "1px" } }}
+              />
+            </Box>
           </ContainerBuscaValores>
-          <BuscaPorTermos />
-          <BasicSelect />
+          <Box>
+            <TextField
+              value={this.state.inputBusca}
+              onChange={this.buscaChange}
+              type="text"
+              id="filled-basic"
+              label="Busca por termos"
+              variant="filled"
+              inputProps={{ style: { height: "1px" } }}
+            />
+          </Box>
+          <Box className="BotaoSelect" sx={{ minWidth: 200 }}>
+            <FormControl fullWidth size="small">
+              <InputLabel>Ordenação</InputLabel>
+              <Select
+                value={this.state.inputSelect}
+                label="Ordem"
+                onChange={this.handleChange}
+              >
+                <MenuItem value={'crescente'}>Valor crescente</MenuItem>
+                <MenuItem value={'decrescente'}>Valor decrescente</MenuItem>
+                <MenuItem value={'alfabetica'}>Título</MenuItem>
+                <MenuItem value={'prazo'}>Prazo</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
         </ContainerFiltros>
 
         <ContainerCards>
-          <p>
-            Título Card1 <br></br>
-            Descrição<br></br>
-            Preço<br></br>
-            Prazo<br></br>
-            Pagamento
-          </p>
-          <p>
-            Título Card2 <br></br>
-            Descrição<br></br>
-            Preço<br></br>
-            Prazo<br></br>
-            Pagamento
-          </p>
-          <p>
-            Título Card3 <br></br>
-            Descrição<br></br>
-            Preço<br></br>
-            Prazo<br></br>
-            Pagamento
-          </p>
-          <p>
-            Título Card4 <br></br>
-            Descrição<br></br>
-            Preço<br></br>
-            Prazo<br></br>
-            Pagamento
-          </p>
-
+          {newJobs()}
         </ContainerCards>
-        {newJobs}
+        
       </div>
-    )
+    );
   }
 }

@@ -19,7 +19,7 @@ import {Container, Body} from './components/styleGeral'
 
 class App extends React.Component {
 	state = {
-		page: 'contratar'		
+		page: 'home'		
 	}
 	
 nextCadastro = () => {
