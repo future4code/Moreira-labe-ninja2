@@ -9,65 +9,36 @@ import SendIcon from '@material-ui/icons/Send';
 export default class Carrinho extends React.Component {
 
     state = {
-        jobs: JobsTempFakes,
         carrinho: [],
-        valorTotal: 0
+        valorTotal: 0,
     }
 
-    adicionarJobsCarrinho = (job) => {
-        if (window.confirm("Deseja excluir este serviço?")) {
-            const jobNoCarrinho = this.state.carrinho.filter(item => {
-                if (item.id === job.id) {
-                    return item
-                }
-            })
-            if (jobNoCarrinho.length === 0) {
-                job.quantidade = 1
-                const novoCarrinho = [...this.state.carrinho, job]
-                this.setState({
-                    carrinho: novoCarrinho
-                })
-            } else {
-                const novoCarrinho = this.state.carrinho.map(item => {
-                    if (job.id === item.id && item.quantidade >= 1) {
-                        return { ...item, quantidade: item.quantidade + 1 }
-                    } else {
-                        return item
-                    }
-                })
-                this.setState({
-                    carrinho: novoCarrinho
-                })
-            }
-            this.somaValorTotal(job.price)
-        } else {
-            alert('Nenhum serviço foi adicionado')
+    componentDidMount() {
+        this.buscarLocalStorage()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.carrinho !== this.state.carrinho) {
+            localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho))
         }
     }
 
+    buscarLocalStorage = () => {
+        const jobs = localStorage.getItem("carrinho")
+        this.setState({ carrinho: JSON.parse(jobs) || [] })
+    }
 
     removerJobsDoCarrinho = (job) => {
         if (window.confirm("Deseja excluir este serviço?")) {
-            if (job.quantidade === 1) {
-                const novoCarrinho = this.state.carrinho.filter(item => {
-                    if (item.id !== job.id) {
-                        return item
-                    }
-                    this.setState({
-                        carrinho: novoCarrinho
-                    })
-                })
-            } else {
-                const novoCarrinho = this.state.carrinho.map(item => {
-                    if (job.id === item.id && item.quantidade >= 1) {
-                        return { ...item, quantidade: item.quantidade - 1 }
-                    } else {
-                        return item
-                    }
-                })
-                this.setState({ carrinho: novoCarrinho })
-            }
-            this.removeValorTotal(job.price)
+            const novoCarrinho = this.state.carrinho.filter(item => {
+                if (item.id !== job.id) {
+                    return item
+                }
+            })
+            this.setState({
+                carrinho: novoCarrinho
+            })
+
         } else {
             alert('Nenhum serviço foi excluído')
         }
@@ -85,17 +56,24 @@ export default class Carrinho extends React.Component {
         })
     }
 
+    zerarCarrinho = () => {
+        alert('Obrigado por contratar nossos serviços.')
+        this.setState({ carrinho: [] })
+    }
+
     render() {
-        const jobsDoCarrinho = this.state.jobs.map((job) => {
+        const jobsDoCarrinho = this.state.carrinho.map((job) => {
             return <ItensCarrinho
                 key={job.id}
-                quantidade={job.quantidade}
                 tituloJob={job.title}
                 preco={job.price}
                 onClick={() => this.removerJobsDoCarrinho(job)}
-
             />
         })
+
+        const total = this.state.carrinho.reduce(
+            ((total, item) => { return total + item.price }), 0)
+
         return (
             <ContainerGeral>
                 <InfosGerais>
@@ -103,20 +81,26 @@ export default class Carrinho extends React.Component {
                         {jobsDoCarrinho}
                     </ListaJobs>
                     <ContainerTotalContratar>
-                        <p><b>Total</b>: R$ {this.state.valorTotal}</p>
+                        {total === 0 ? <h1>
+                            Seu carrinho vazio. Acesse nossos serviços!
+                            </h1> : <p><b>Total</b>: R$ {total}</p>}
+                        {/* {total !==0 && <p><b>Total</b>: R$ {total}</p>} */}
                         <Button
                             className='BotaoVoltar'
                             variant='contained'
                             color='primary'
                             onClick={this.props.nextContratar}>
-                            Mais serviços
+                            Serviços
                         </Button>
-
+                        {total !==0 && 
                         <Button
                             variant="contained"
-                            endIcon={<SendIcon />}>
+                            endIcon={<SendIcon />}
+                            onClick={this.zerarCarrinho}
+                        >
                             Contratar
                         </Button>
+                        }
                     </ContainerTotalContratar>
                 </InfosGerais>
             </ContainerGeral>

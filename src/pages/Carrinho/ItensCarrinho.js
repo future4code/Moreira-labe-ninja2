@@ -1,6 +1,6 @@
 import React from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { ItensRenderizados } from '../../components/LayoutCarrinho';
+import { ItensRenderizados, InfoServicoPreco, AreaBotaoDeletar } from '../../components/LayoutCarrinho';
 
 
 export default class ItensCarrinho extends React.Component {
@@ -10,17 +10,16 @@ export default class ItensCarrinho extends React.Component {
     return (
       <section>
         <ItensRenderizados>
-          <p>Quantidade: {this.props.quantidade} x </p>
-          <p>Serviço: {this.props.tituloJob} </p>
-          <p>Preço: R$ {this.props.preco}</p>
-
-          <button>
-            <DeleteIcon
-              color="primary"
-              onClick={this.props.onClick}>
-            </DeleteIcon>
-          </button>
-
+          <InfoServicoPreco>
+            <p>Serviço: {this.props.tituloJob} </p>
+          </InfoServicoPreco>
+          <p>Preço: R$ {this.props.preco},00 </p>
+            <button>
+              <DeleteIcon
+                color="primary"
+                onClick={this.props.onClick}>
+              </DeleteIcon>
+            </button>
         </ItensRenderizados>
       </section>
     )
