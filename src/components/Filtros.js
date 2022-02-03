@@ -9,9 +9,11 @@ export default class Filtros extends Component {
     }
 
     filtrarPorValores = () => {
-        const novaListaMin = this.state.lista.filter((item)=>{
+        let novaLista = [... this.state.lista]
+        if (this.state.minimo){
+        novaLista = novaLista.filter((item)=>{
             return item.price > this.state.minimo
-        })
+        })}
 
         const novaListaMax = novaListaMin.filter((item)=>{
             return item.price < this.state.maximo
