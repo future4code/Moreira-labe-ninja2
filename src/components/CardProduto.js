@@ -32,9 +32,9 @@ export  default class CardProduto extends Component {
     render() {
       return (
         <ConteinerCard>
-             <h2>web design</h2>
-             <p>preço</p>
-             <p>prazo</p>
+             <h2>{this.props.titulo}</h2>
+             <p>Preço: R${this.props.preco},00</p>
+             <p>Prazo: {this.props.prazo.slice(0,10)}</p>
              <BotaoCard> 
              <Button className="botao" variant='contained'color='primary'>ver detalhes</Button>
              <Button className="botao" variant='contained'color='primary'>adicionar carrinhos</Button>
