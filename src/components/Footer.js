@@ -9,6 +9,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position:absolute;
+	bottom:0;
   width: 100%;
   background-color: #aaa1c8;
   padding: 10px 20px;
@@ -30,9 +32,9 @@ export default class Footer extends React.Component {
       <Container>
         <h2>Labeninjas</h2>
         <span>
-          <A href="https://twitter.com/"><Img src={twitter} alt="logo twitter" /></A>
-          <A href="https://facebook.com/"><Img src={facebook} alt="logo facebook" /></A>
-          <A href="https://instagram.com/"> <Img src={instagram} alt="logo instagram" /> </A>
+          <A href="https://twitter.com/" target="_blank"><Img src={twitter} alt="logo twitter" /></A>
+          <A href="https://facebook.com/" target="_blank"><Img src={facebook} alt="logo facebook" /></A>
+          <A href="https://instagram.com/" target="_blank"> <Img src={instagram} alt="logo instagram" /> </A>
         </span>
       </Container>
     )
