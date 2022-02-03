@@ -33,14 +33,15 @@ flex-direction: column;
 
 export const ContainerCards = styled.div`
 display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
+grid-template-columns:  1fr 1fr 1fr;
 margin: 50px 15px;
 justify-content: center;
 text-align: center;
 align-items: center;
+max-width:100vw;
 
 p{
-    border: 1px solid black;
+    
     margin: 10px 10px;
     border-radius: 5px;
 }
