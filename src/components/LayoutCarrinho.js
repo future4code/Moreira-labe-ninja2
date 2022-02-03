@@ -23,6 +23,9 @@ export const ItensRenderizados = Styled.div`
       :hover{cursor:pointer; background-color: #d4cbcb; border-radius: 3px;}
   }
 `
+const BotaoVoltar = Styled.button`
+  margin-top: 50px;
+`
 
 export const ContainerGeral = Styled.section`
   display: flex;
@@ -46,7 +49,7 @@ p{
     align-items: center;
     justify-content: center;
     height: 40px;
-    width: 190px;
+    width: 150px;
     border-radius: 5px;
     border: 1px solid gray;
     background: ${palette.info.main};
@@ -57,12 +60,11 @@ button{
     align-items: center;
     justify-content: center;
     height: 40px;
-    width: 190px;
+    width: 150px;
     border-radius: 5px;
     border: 1px solid gray;
     background: ${palette.primary.main};
 }
-
 `
 
 export const ListaJobs = Styled.section`
