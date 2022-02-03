@@ -17,13 +17,13 @@ export default function BasicSelect() {
 
     return (
         <Box className="BotaoSelect" sx={{ minWidth: 200 }}>
-            <FormControl fullWidth>
+            <FormControl fullWidth size="small">
                 <InputLabel>Ordenação</InputLabel>
                 <Select
                     value={ordem}
                     label="Ordem"
                     onChange={handleChange}
-                >
+                    >
                     <MenuItem value={1}>Valor crescente</MenuItem>
                     <MenuItem value={2}>Valor decrescente</MenuItem>
                     <MenuItem value={3}>Título</MenuItem>
@@ -39,12 +39,17 @@ export function BuscaPorTermos() {
         <Box
             component="form"
             sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                '& > :not(style)': { m: 1, width: '25ch'},
             }}
             noValidate
             autoComplete="off"
         >
-            <TextField type='text' id="filled-basic" label="Busca por termos" variant="filled" />
+            <TextField 
+            type='text' 
+            id="filled-basic" 
+            label="Busca por termos"
+            variant="filled" 
+            inputProps={{ style: { height: "1px",},}}/>
         </Box>
     );
 }
@@ -54,12 +59,16 @@ export function BuscaValorMaximo() {
         <Box
             component="form"
             sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                '& > :not(style)': { m: 1, width: '25ch'},
             }}
             noValidate
             autoComplete="off"
         >
-            <TextField type='number' id="filled-basic" label="Valor máximo" variant="filled" />
+            <TextField type='number'
+            id="filled-basic"
+            label="Valor máximo"
+            variant="filled" 
+            inputProps={{ style: { height: "1px",},}}/>
         </Box>
     );
 }
@@ -69,12 +78,17 @@ export function BuscaValorMinimo() {
         <Box
             component="form"
             sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                '& > :not(style)': { m: 1, width: '25ch'},
             }}
             noValidate
             autoComplete="off"
         >
-            <TextField type='number' id="filled-basic" label="Valor mínimo" variant="filled" />
+            <TextField 
+            type='number' 
+            id="filled-basic" 
+            label="Valor mínimo" 
+            variant="filled" 
+            inputProps={{ style: { height: "1px",},}} />
         </Box>
     );
 }
@@ -86,17 +100,21 @@ display: flex;
 height: auto;
 justify-content: space-between;
 align-items: center;
+margin: 3px 15px;
+
+.TextField{
+    background-color: red;
+}
 
 input{
-    height: 4px;
-    background-color: ${palette.secondary.main};
-    border-radius: 5px;
+    background-color: ${palette.primary.main};
+    border-radius: 4px;
     margin-top: 2px;
 }
 
 .BotaoSelect{
-    background-color: ${palette.secondary.main};
-    border-radius: 5px;
+    background-color: ${palette.primary.main};
+    border-radius: 4px;
     margin-top: 2px; 
     height: 47px;
 }
