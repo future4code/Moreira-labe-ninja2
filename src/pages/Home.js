@@ -15,8 +15,7 @@ const ContainerHome = styled.div`
   .imgHome{
     border: 1px solid white;
     box-shadow: 1px 1px 4px black;
-    height: 650px;
-    width: 700px;
+    height: 70vh;
     object-fit: cover; 
     background-color: #f5e6e8;       
   }

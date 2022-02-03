@@ -10,8 +10,9 @@ const Div = styled.div`
   border: 1px solid black;
   border-radius: 10px;
   width: 450px;
-  height: 250px
+  height: 250px;
 `
+
 
 
 
@@ -30,6 +31,7 @@ export default class Detalhes extends Component {
 
 
   render() {
+
     return (
       <Div>
         <h1>Título do Serviço</h1>
