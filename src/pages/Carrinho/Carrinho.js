@@ -82,7 +82,7 @@ export default class Carrinho extends React.Component {
                     </ListaJobs>
                     <ContainerTotalContratar>
                         {total === 0 ? <h1>
-                            Seu carrinho vazio. Acesse nossos serviços!
+                            Seu carrinho está vazio. Acesse nossos serviços!
                             </h1> : <p><b>Total</b>: R$ {total}</p>}
                         {/* {total !==0 && <p><b>Total</b>: R$ {total}</p>} */}
                         <Button
