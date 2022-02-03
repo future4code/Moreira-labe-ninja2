@@ -11,6 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
+import CardProduto from "../components/CardProduto"
 
 export default class Contratar extends Component {
   state = {
@@ -91,11 +92,10 @@ export default class Contratar extends Component {
       return novaLista.map((service) => {
         return (
           <div key={service.id}>
-            <h3>{service.title}</h3>
-            <p>{service.description}</p>
-            <p>{service.price}</p>
-            <p>{service.paymentMethods}</p>
-            <p>{service.dueDate}</p>
+            <CardProduto titulo={service.title} 
+            preco={service.price}
+             prazo={service.dueDate}
+             id={service.id}/>
           </div>
         );
       });

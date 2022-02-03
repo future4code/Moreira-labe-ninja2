@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { ContainerGeral, ContainerTotalContratar, InfosGerais, ListaJobs } from '../../components/LayoutCarrinho';
 import { JobsTempFakes } from '../../constants/TempJobsFakes';
 import ItensCarrinho from './ItensCarrinho';
-import {Button} from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 
 
@@ -104,7 +104,17 @@ export default class Carrinho extends React.Component {
                     </ListaJobs>
                     <ContainerTotalContratar>
                         <p><b>Total</b>: R$ {this.state.valorTotal}</p>
-                        <Button variant="contained" endIcon={<SendIcon />}>
+                        <Button
+                            className='BotaoVoltar'
+                            variant='contained'
+                            color='primary'
+                            onClick={this.props.nextContratar}>
+                            Mais serviços
+                        </Button>
+
+                        <Button
+                            variant="contained"
+                            endIcon={<SendIcon />}>
                             Contratar
                         </Button>
                     </ContainerTotalContratar>
