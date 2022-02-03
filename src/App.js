@@ -19,7 +19,7 @@ import {Container, Body} from './components/styleGeral'
 
 class App extends React.Component {
 	state = {
-		page: 'carrinho'		
+		page: 'home'		
 	}
 	
 nextCadastro = () => {
@@ -39,7 +39,7 @@ nextContratar = () => {
 				case 'cadastro':
 					return <Cadastro />
 				case 'carrinho':
-					return <Carrinho nextContratar={this.nextContratar}/>
+					return <Carrinho nextContratar={this.nextContratar} />
 				case 'detalhes':
 					return <Detalhes />
 				default:
