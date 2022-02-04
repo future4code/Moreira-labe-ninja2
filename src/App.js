@@ -40,7 +40,6 @@ class App extends React.Component {
 	}
 
 	render() {
-		console.log("estado", this.state);
 		const pagina = () => {
 			switch (this.state.page) {
 				case 'home':
@@ -50,7 +49,7 @@ class App extends React.Component {
 				case 'cadastro':
 					return <Cadastro />
 				case 'carrinho':
-					return <Carrinho />
+					return <Carrinho nextContratar={this.nextContratar} />
 				case 'detalhes':
 					return <Detalhes idJob={this.state.detalhesId} nextContratar={this.nextContratar} />
 				default:
