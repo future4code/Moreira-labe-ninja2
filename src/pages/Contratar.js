@@ -7,7 +7,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
-import CardProduto from "../components/CardProduto"
+import CardProduto from "../components/CardProduto";
+import Button from '@material-ui/core/Button';
+import RotateRightIcon from '@material-ui/icons/RotateRight';
 
 export default class Contratar extends Component {
   state = {
@@ -110,6 +112,17 @@ export default class Contratar extends Component {
       }
 
       return novaLista.map((service) => {
+        let desabilitado
+        const jobNoCarrinho = this.state.carrinho.filter(item => {
+          if (item.id === service.id) {
+            return item
+          }
+        })
+        if (jobNoCarrinho.length === 0){
+          desabilitado = false
+        } else {
+          desabilitado = true
+        }
         return (
           <div key={service.id}>
             <CardProduto
@@ -118,6 +131,7 @@ export default class Contratar extends Component {
               prazo={service.dueDate}
               id={service.id}
               job={service}
+              disabled={desabilitado}
               carrinho={this.adicionarJobsCarrinho} />
           </div>
         );
@@ -179,7 +193,14 @@ export default class Contratar extends Component {
         </ContainerFiltros>
 
         <ContainerCards>
-          {newJobs()}
+          {(this.state.listJobs.length !== 0) ? (newJobs()) : (<Button
+            disabled
+            variant="outlined"
+            color="primary"
+            startIcon={<RotateRightIcon />}
+          >
+            Carregando
+          </Button>)}
         </ContainerCards>
 
       </div>
