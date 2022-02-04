@@ -12,6 +12,7 @@ import Detalhes from './pages/Detalhes';
 import Footer from './components/Footer';
 import "./geral.css";
 import {Container, Body} from './components/styleGeral'
+import Header from './components/Header';
 
 
 //Para instalar o Desing Material: npm install @material-ui/core
