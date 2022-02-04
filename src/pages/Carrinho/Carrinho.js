@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ContainerGeral, ContainerTotalContratar, InfosGerais, ListaJobs } from '../../components/LayoutCarrinho';
-import { JobsTempFakes } from '../../constants/TempJobsFakes';
 import ItensCarrinho from './ItensCarrinho';
 import { Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 
 export default class Carrinho extends React.Component {
@@ -11,6 +11,7 @@ export default class Carrinho extends React.Component {
     state = {
         carrinho: [],
         valorTotal: 0,
+        mostrarAlerta: false
     }
 
     componentDidMount() {
@@ -57,8 +58,8 @@ export default class Carrinho extends React.Component {
     }
 
     zerarCarrinho = () => {
-        alert('Obrigado por contratar nossos serviços.')
-        this.setState({ carrinho: [] })
+        this.setState({ carrinho: [],
+                        mostrarAlerta:true })
     }
 
     render() {
@@ -77,14 +78,18 @@ export default class Carrinho extends React.Component {
         return (
             <ContainerGeral>
                 <InfosGerais>
+                {this.state.mostrarAlerta && <Alert className='alertSuccess' variant="filled" severity="success"
+                    onClose={() => {this.setState({mostrarAlerta: false})}}>
+                    <AlertTitle>Success</AlertTitle>
+                    Obrigado por contratar nossos serviços.
+                    </Alert>}
                     <ListaJobs>
                         {jobsDoCarrinho}
                     </ListaJobs>
                     <ContainerTotalContratar>
                         {total === 0 ? <h1>
-                            Seu carrinho está vazio. Acesse nossos serviços!
+                            Seu carrinho está vazio. Acesse serviços!
                             </h1> : <p><b>Total</b>: R$ {total}</p>}
-                        {/* {total !==0 && <p><b>Total</b>: R$ {total}</p>} */}
                         <Button
                             className='BotaoVoltar'
                             variant='contained'

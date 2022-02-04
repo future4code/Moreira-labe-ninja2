@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ContainerFiltros, ContainerBuscaValores, ContainerCards, } from "../components/PageContratarLayoutGeral";
+import { ContainerFiltros, ContainerBuscaValores, ContainerCards, Container } from "../components/PageContratarLayoutGeral";
 import { getAllJobs } from "../services/integracoes";
 import Box from "@material-ui/core/Box";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -11,6 +11,7 @@ import CardProduto from "../components/CardProduto";
 import Button from '@material-ui/core/Button';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import { Alert, AlertTitle } from '@material-ui/lab';
 
 export default class Contratar extends Component {
   state = {
@@ -20,6 +21,7 @@ export default class Contratar extends Component {
     inputValMax: "",
     inputBusca: "",
     carrinho: [],
+    mostrarAlerta: false
   };
 
   componentDidMount() {
@@ -71,6 +73,7 @@ export default class Contratar extends Component {
       })
       localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho))
     }
+    this.setState({mostrarAlerta:true})
   }
 
 
@@ -145,7 +148,7 @@ export default class Contratar extends Component {
       });
     };
     return (
-      <div>
+      <Container>
         <ContainerFiltros>
           <ContainerBuscaValores>
             <Box>
@@ -201,7 +204,11 @@ export default class Contratar extends Component {
             </FormControl>
           </Box>
         </ContainerFiltros>
-
+        {this.state.mostrarAlerta && <Alert className='alertSuccess' variant="filled" severity="success"
+        onClose={() => {this.setState({mostrarAlerta: false})}}>
+          <AlertTitle>Success</AlertTitle>
+          Serviço adicionado ao carrinho!
+          </Alert>}
         <ContainerCards>
           {(this.state.listJobs.length !== 0) ? (newJobs()) : (<Button
             disabled
@@ -213,7 +220,7 @@ export default class Contratar extends Component {
           </Button>)}
         </ContainerCards>
 
-      </div>
+      </Container>
     );
   }
 }

@@ -27,3 +27,11 @@ p{
     border-radius: 5px;
 }
 `
+export const Container = styled.div`
+    .alertSuccess{
+        background-color: ${palette.sucess.main};
+        position: fixed;
+        z-index: 2;
+        margin-left: 40vw;
+    }
+`

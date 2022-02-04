@@ -11,9 +11,9 @@ export default class ItensCarrinho extends React.Component {
       <section>
         <ItensRenderizados>
           <InfoServicoPreco>
-            <p>Serviço: {this.props.tituloJob} </p>
+            <p>{this.props.tituloJob} </p>
           </InfoServicoPreco>
-          <p>Preço: R$ {this.props.preco},00 </p>
+          <p>R$ {this.props.preco},00 </p>
             <button>
               <DeleteIcon
                 color="primary"
