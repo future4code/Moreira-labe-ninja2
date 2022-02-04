@@ -7,23 +7,6 @@ height: auto;
 justify-content: space-between;
 align-items: center;
 margin: 3px 15px;
-
-.TextField{
-    background-color: red;
-}
-
-input{
-    background-color: ${palette.primary.main};
-    border-radius: 4px;
-    margin-top: 2px;
-}
-
-.BotaoSelect{
-    background-color: ${palette.primary.main};
-    border-radius: 4px;
-    margin-top: 2px; 
-    height: 47px;
-}
 `
 
 export const ContainerBuscaValores = styled.div`

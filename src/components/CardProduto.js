@@ -6,7 +6,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 const ConteinerCard = styled.div`
   border: 1px solid #aaa1c8;
-  width: 400px; 
+  width: 280px; 
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@ export default class CardProduto extends Component {
             className="botao"
             variant='contained'
             color='primary'
-
+            onClick={()=>{this.props.nextDetails(this.props.id, this.state.desabilitado)}}
           >
             Detalhes
           </Button>
@@ -64,13 +64,6 @@ export default class CardProduto extends Component {
             aria-label="add to shopping cart">
             <AddShoppingCartIcon fontSize="large" />
           </IconButton>}
-          {/* <Button
-            className="botao"
-            variant='contained'
-            color='primary'
-            onClick={() => { this.props.carrinho(this.props.job) }}>
-            Carrinho
-          </Button> */}
         </BotaoCard>
       </ConteinerCard>
     )

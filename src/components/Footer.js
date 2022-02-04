@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import facebook from '../assets/facebook.png';
-import instagram from '../assets/instagram.png';
-import twitter from '../assets/twitter.png';
+import IconButton from '@material-ui/core/IconButton';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import InstagramIcon from '@material-ui/icons/Instagram';
 
 
 const Container = styled.div`
@@ -15,7 +16,7 @@ const Container = styled.div`
 `;
 
 const Img = styled.img`
-  width:40px;
+  width:100%;
 `;
 
 const A = styled.a`
@@ -30,9 +31,21 @@ export default class Footer extends React.Component {
       <Container>
         <h2>Labeninjas</h2>
         <span>
-          <A href="https://twitter.com/" target="_blank"><Img src={twitter} alt="logo twitter" /></A>
-          <A href="https://facebook.com/" target="_blank"><Img src={facebook} alt="logo facebook" /></A>
-          <A href="https://instagram.com/" target="_blank"> <Img src={instagram} alt="logo instagram" /> </A>
+          <a href="https://twitter.com/" target="_blank">
+          <IconButton color="secondary" component="span">
+            <TwitterIcon fontSize='large' />
+          </IconButton>
+          </a>
+          <a href="https://facebook.com/" target="_blank">
+          <IconButton color="secondary" component="span">
+            <FacebookIcon fontSize='large'/>
+          </IconButton>
+          </a>
+          <a href="https://instagram.com/" target="_blank">
+          <IconButton color="secondary" component="span">
+            <InstagramIcon fontSize='large'/>
+          </IconButton>
+          </a>
         </span>
       </Container>
     )
