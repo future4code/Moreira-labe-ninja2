@@ -20,3 +20,9 @@ export const getAllJobs = (funcao) =>{
         alert('Erro. Tente Novamente!')
     })
   }
+
+  export const getDetalhes = (id, funcao) => {
+    const urlGetJob = `jobs/${id}`
+    axios.get(baseURL + urlGetJob, { headers })
+      .then((res) => {funcao(res.data)})
+  }

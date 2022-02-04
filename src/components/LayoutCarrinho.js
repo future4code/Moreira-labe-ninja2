@@ -3,10 +3,10 @@ import { palette } from '../constants/colors'
 
 export const ItensRenderizados = Styled.div`
 display: flex;
-width: 80vw;
+width: 95vw;
 height: 5vh;
 border: 1px solid gray;
-padding: 0px 30px;
+padding: 0px 5px;
 border-radius: 5px;
 justify-content: space-between;
 align-items: center;
@@ -24,7 +24,7 @@ button{
 `
 export const InfoServicoPreco = Styled.section`
 display: flex;
-width: 40em;
+width: 12em;
 `
 
 export const BotaoVoltar = Styled.button`
@@ -40,10 +40,14 @@ margin-top: 100px;
 export const InfosGerais = Styled.section`
 width: auto;
 padding: 10px;
+.alertSuccess{
+        background-color: ${palette.sucess.main};
+    }
 `
 
 export const ContainerTotalContratar = Styled.section`
 display: flex;
+flex-wrap: wrap;
 justify-content: space-around;
 padding-top: 80px;
 
@@ -52,31 +56,34 @@ p{
   align-items: center;
   justify-content: center;
   height: 40px;
-  width: 150px;
+  width: 120px;
   border-radius: 5px;
   border: 1px solid gray;
+  margin-top: 20px;
   background: ${palette.info.main};
 }
 
 button{
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   height: 40px;
-  width: 150px;
+  width: auto;
   border-radius: 5px;
   border: 1px solid gray;
+  margin-top: 20px;
   background: ${palette.primary.main};
 }
 
 h1{
   display: flex;
   position: absolute;
-  margin-top: -100px;
+  margin-top: -80px;
   align-items: center;
   justify-content: center;
   height: 40px;
-  width: 400px;
+  width: 300px;
 
 }
 `
