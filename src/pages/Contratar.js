@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-import React, { Component } from 'react';
-import BasicSelect, { BuscaPorTermos, BuscaValorMaximo, BuscaValorMinimo } from '../components/PageContratarLayoutGeral'
-import { ContainerFiltros, ContainerBuscaValores, ContainerCards } from '../components/PageContratarLayoutGeral';
-import { Button } from '@material-ui/core';
-import { getAllJobs } from '../services/integracoes';
-
-=======
 import React, { Component } from "react";
-import {ContainerFiltros, ContainerBuscaValores, ContainerCards,} from "../components/PageContratarLayoutGeral";
+import { ContainerFiltros, ContainerBuscaValores, ContainerCards, } from "../components/PageContratarLayoutGeral";
 import { getAllJobs } from "../services/integracoes";
 import Box from "@material-ui/core/Box";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -16,7 +8,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import CardProduto from "../components/CardProduto"
->>>>>>> master
 
 export default class Contratar extends Component {
   state = {
