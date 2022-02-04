@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import CardProduto from "../components/CardProduto";
 import Button from '@material-ui/core/Button';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 export default class Contratar extends Component {
   state = {
@@ -24,6 +25,12 @@ export default class Contratar extends Component {
   componentDidMount() {
     getAllJobs(this.atualizarJobs);
     this.buscarLocalStorage()
+  }
+  
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.carrinho !== this.state.carrinho) {
+        localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho))
+    }
   }
 
   buscarLocalStorage = () => {
@@ -64,7 +71,6 @@ export default class Contratar extends Component {
       })
       localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho))
     }
-    // this.somaValorTotal(job.price)
   }
 
 
@@ -132,6 +138,7 @@ export default class Contratar extends Component {
               id={service.id}
               job={service}
               disabled={desabilitado}
+              nextDetails={this.props.nextDetails}
               carrinho={this.adicionarJobsCarrinho} />
           </div>
         );
@@ -147,9 +154,11 @@ export default class Contratar extends Component {
                 onChange={this.valorMinChange}
                 type="number"
                 id="filled-basic"
-                label="Valor mínimo"
-                variant="filled"
-                inputProps={{ style: { height: "1px" } }}
+                label="Min"
+                variant="standard"
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                }}
               />
             </Box>
             <Box>
@@ -158,9 +167,11 @@ export default class Contratar extends Component {
                 onChange={this.valorMaxChange}
                 type="number"
                 id="filled-basic"
-                label="Valor máximo"
-                variant="filled"
-                inputProps={{ style: { height: "1px" } }}
+                label="Max"
+                variant="standard"
+                InputProps={{
+                  startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+                }}
               />
             </Box>
           </ContainerBuscaValores>
@@ -170,9 +181,8 @@ export default class Contratar extends Component {
               onChange={this.buscaChange}
               type="text"
               id="filled-basic"
-              label="Busca por nome"
-              variant="filled"
-              inputProps={{ style: { height: "1px" } }}
+              label="Busca"
+              variant="standard"
             />
           </Box>
           <Box className="BotaoSelect" sx={{ minWidth: 200 }}>

@@ -11,11 +11,13 @@ const ContainerHome = styled.div`
     align-items: center;
     flex-wrap: wrap;
     box-sizing: border-box;
+    height: 100%;
 
   .imgHome{
     border: 1px solid white;
     box-shadow: 1px 1px 4px black;
-    height: 70vh;
+    width: 350px;
+    max-width: 100vw;
     object-fit: cover; 
     background-color: #f5e6e8;       
   }
@@ -25,7 +27,7 @@ const ContainerHome = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding:20px;     
+    padding:0 20px;     
   }
 
   .botao{

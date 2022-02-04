@@ -12,6 +12,7 @@ import Detalhes from './pages/Detalhes';
 import Footer from './components/Footer';
 import { Container, Body } from './components/styleGeral'
 import { GlobalStyle } from './styleGeral'
+import Header from './components/Header';
 
 
 //Para instalar o Desing Material: npm install @material-ui/core
@@ -21,6 +22,7 @@ class App extends React.Component {
 	state = {
 		page: 'home',
 		detalhesId: "",
+		desabilitado: false,
 	}
 
 	nextCadastro = () => {
@@ -29,14 +31,17 @@ class App extends React.Component {
 	nextContratar = () => {
 		this.setState({ page: 'contratar' })
 	}
-
-	nextDetails = () => {
-		this.setState({ page: 'detalhes' })
+	nextHome = () => {
+		this.setState({ page: 'home' })
+	}
+	nextCarrinho = () => {
+		this.setState({ page: 'carrinho' })
 	}
 
-	setDetailsId = (id) => {
-		this.setState({ detalhesId: id })
-		this.nextDetails()
+	nextDetails = (id, disabled) => {
+		this.setState({ detalhesId: id,
+						page: 'detalhes',
+						desabilitado: disabled })
 	}
 
 	render() {
@@ -45,13 +50,13 @@ class App extends React.Component {
 				case 'home':
 					return <Home nextCadastro={this.nextCadastro} nextContratar={this.nextContratar} />
 				case 'contratar':
-					return <Contratar setDetailsId={this.setDetailsId} nextDetails={this.nextDetails} />
+					return <Contratar nextDetails={this.nextDetails} />
 				case 'cadastro':
 					return <Cadastro />
 				case 'carrinho':
 					return <Carrinho nextContratar={this.nextContratar} />
 				case 'detalhes':
-					return <Detalhes idJob={this.state.detalhesId} nextContratar={this.nextContratar} />
+					return <Detalhes disabled={this.state.desabilitado} idJob={this.state.detalhesId} nextContratar={this.nextContratar} />
 				default:
 					return <Home />
 			}
@@ -61,6 +66,7 @@ class App extends React.Component {
 			<ThemeProvider theme={theme}>
 				<GlobalStyle />
 				<Container>
+					<Header nextCarrinho={this.nextCarrinho} nextHome={this.nextHome} />
 					<Body>
 						{pagina()}
 					</Body>
