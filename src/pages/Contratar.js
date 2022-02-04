@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import {
-  ContainerFiltros,
-  ContainerBuscaValores,
-  ContainerCards,
-} from "../components/PageContratarLayoutGeral";
+import {ContainerFiltros, ContainerBuscaValores, ContainerCards,} from "../components/PageContratarLayoutGeral";
 import { getAllJobs } from "../services/integracoes";
 import Box from "@material-ui/core/Box";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -20,10 +16,17 @@ export default class Contratar extends Component {
     inputValMin: "",
     inputValMax: "",
     inputBusca: "",
+    carrinho: [],
   };
 
   componentDidMount() {
     getAllJobs(this.atualizarJobs);
+    this.buscarLocalStorage()
+  }
+
+  buscarLocalStorage = () => {
+    const jobs = localStorage.getItem("carrinho")
+    this.setState({ carrinho: JSON.parse(jobs) || [] })
   }
 
   atualizarJobs = (dados) => {
@@ -46,6 +49,23 @@ export default class Contratar extends Component {
     this.setState({ inputBusca: event.target.value });
   };
 
+  adicionarJobsCarrinho = (job) => {
+    const jobNoCarrinho = this.state.carrinho.filter(item => {
+      if (item.id === job.id) {
+        return item
+      }
+    })
+    if (jobNoCarrinho.length === 0) {
+      const novoCarrinho = [...this.state.carrinho, job]
+      this.setState({
+        carrinho: novoCarrinho
+      })
+      localStorage.setItem("carrinho", JSON.stringify(this.state.carrinho))
+    }
+    // this.somaValorTotal(job.price)
+  }
+
+
   render() {
     const newJobs = () => {
       let novaLista = [...this.state.listJobs];
@@ -66,36 +86,39 @@ export default class Contratar extends Component {
           return item.title.toLowerCase().includes(this.state.inputBusca.toLowerCase());
         });
       }
-      if (this.state.inputSelect === 'crescente'){
-        novaLista.sort((a,b)=>{return a.price-b.price});
-      } else if (this.state.inputSelect === 'decrescente'){
-        novaLista.sort((a,b)=>{return b.price-a.price});
-      } else if (this.state.inputSelect === 'alfabetica'){
+      if (this.state.inputSelect === 'crescente') {
+        novaLista.sort((a, b) => { return a.price - b.price });
+      } else if (this.state.inputSelect === 'decrescente') {
+        novaLista.sort((a, b) => { return b.price - a.price });
+      } else if (this.state.inputSelect === 'alfabetica') {
         novaLista.sort((a, b) => {
-                if (a.title.toLowerCase() > b.title.toLowerCase()) {
-                  return 1;
-                }
-                if (a.title.toLowerCase() < b.title.toLowerCase()) {
-                  return -1;
-                }
-                // a must be equal to b
-                return 0;
-              });
-      } else if (this.state.inputSelect === 'prazo'){
+          if (a.title.toLowerCase() > b.title.toLowerCase()) {
+            return 1;
+          }
+          if (a.title.toLowerCase() < b.title.toLowerCase()) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+      } else if (this.state.inputSelect === 'prazo') {
         novaLista.sort((a, b) => {
-                const data1 = new Date(a.dueDate)
-                const data2 = new Date(b.dueDate)
-                return data1 - data2
-              });
+          const data1 = new Date(a.dueDate)
+          const data2 = new Date(b.dueDate)
+          return data1 - data2
+        });
       }
 
       return novaLista.map((service) => {
         return (
           <div key={service.id}>
-            <CardProduto titulo={service.title} 
-            preco={service.price}
-             prazo={service.dueDate}
-             id={service.id}/>
+            <CardProduto
+              titulo={service.title}
+              preco={service.price}
+              prazo={service.dueDate}
+              id={service.id}
+              job={service}
+              carrinho={this.adicionarJobsCarrinho} />
           </div>
         );
       });
@@ -133,7 +156,7 @@ export default class Contratar extends Component {
               onChange={this.buscaChange}
               type="text"
               id="filled-basic"
-              label="Busca por termos"
+              label="Busca por nome"
               variant="filled"
               inputProps={{ style: { height: "1px" } }}
             />
@@ -158,7 +181,7 @@ export default class Contratar extends Component {
         <ContainerCards>
           {newJobs()}
         </ContainerCards>
-        
+
       </div>
     );
   }
