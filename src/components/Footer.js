@@ -15,11 +15,11 @@ const Container = styled.div`
 `;
 
 const Img = styled.img`
-  width:50px;
+  width:40px;
 `;
 
 const A = styled.a`
-  margin-left: 20px; 
+  margin: 0 15px; 
   text-decoration: none;
 `
 
@@ -30,9 +30,9 @@ export default class Footer extends React.Component {
       <Container>
         <h2>Labeninjas</h2>
         <span>
-          <A href="https://twitter.com/"><Img src={twitter} alt="logo twitter" /></A>
-          <A href="https://facebook.com/"><Img src={facebook} alt="logo facebook" /></A>
-          <A href="https://instagram.com/"> <Img src={instagram} alt="logo instagram" /> </A>
+          <A href="https://twitter.com/" target="_blank"><Img src={twitter} alt="logo twitter" /></A>
+          <A href="https://facebook.com/" target="_blank"><Img src={facebook} alt="logo facebook" /></A>
+          <A href="https://instagram.com/" target="_blank"> <Img src={instagram} alt="logo instagram" /> </A>
         </span>
       </Container>
     )

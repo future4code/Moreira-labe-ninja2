@@ -10,8 +10,8 @@ import Cadastro from './pages/Cadastro';
 import Carrinho from './pages/Carrinho/Carrinho';
 import Detalhes from './pages/Detalhes';
 import Footer from './components/Footer';
-import "./geral.css";
-import {Container, Body} from './components/styleGeral'
+import { Container, Body } from './components/styleGeral'
+import { GlobalStyle } from './styleGeral'
 
 
 //Para instalar o Desing Material: npm install @material-ui/core
@@ -19,29 +19,39 @@ import {Container, Body} from './components/styleGeral'
 
 class App extends React.Component {
 	state = {
-		page: 'home'		
+		page: 'home',
+		detalhesId: "",
 	}
-	
-nextCadastro = () => {
-	this.setState({page: 'cadastro'})
-}
-nextContratar = () => {
-	this.setState({page: 'contratar'})
-}
+
+	nextCadastro = () => {
+		this.setState({ page: 'cadastro' })
+	}
+	nextContratar = () => {
+		this.setState({ page: 'contratar' })
+	}
+
+	nextDetails = () => {
+		this.setState({ page: 'detalhes' })
+	}
+
+	setDetailsId = (id) => {
+		this.setState({ detalhesId: id })
+		this.nextDetails()
+	}
 
 	render() {
 		const pagina = () => {
 			switch (this.state.page) {
 				case 'home':
-					return <Home nextCadastro={this.nextCadastro} nextContratar={this.nextContratar}/>
+					return <Home nextCadastro={this.nextCadastro} nextContratar={this.nextContratar} />
 				case 'contratar':
-					return <Contratar />
+					return <Contratar setDetailsId={this.setDetailsId} nextDetails={this.nextDetails} />
 				case 'cadastro':
 					return <Cadastro />
 				case 'carrinho':
 					return <Carrinho nextContratar={this.nextContratar} />
 				case 'detalhes':
-					return <Detalhes />
+					return <Detalhes idJob={this.state.detalhesId} nextContratar={this.nextContratar} />
 				default:
 					return <Home />
 			}
@@ -49,6 +59,7 @@ nextContratar = () => {
 
 		return (
 			<ThemeProvider theme={theme}>
+				<GlobalStyle />
 				<Container>
 					<Body>
 						{pagina()}
@@ -56,7 +67,6 @@ nextContratar = () => {
 					<Footer />
 				</Container>
 			</ThemeProvider>
-
 		)
 	}
 }

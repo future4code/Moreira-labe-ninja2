@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {ContainerFiltros, ContainerBuscaValores, ContainerCards,} from "../components/PageContratarLayoutGeral";
+import { ContainerFiltros, ContainerBuscaValores, ContainerCards, } from "../components/PageContratarLayoutGeral";
 import { getAllJobs } from "../services/integracoes";
 import Box from "@material-ui/core/Box";
 import InputLabel from "@material-ui/core/InputLabel";

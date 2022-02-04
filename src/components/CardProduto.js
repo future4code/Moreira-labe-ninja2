@@ -36,7 +36,9 @@ export default class CardProduto extends Component {
           <Button
             className="botao"
             variant='contained'
-            color='primary'>
+            color='primary'
+
+          >
             Detalhes
           </Button>
           <Button
