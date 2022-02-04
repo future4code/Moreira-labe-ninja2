@@ -9,19 +9,17 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position:absolute;
-	bottom:0;
   width: 100%;
   background-color: #aaa1c8;
   padding: 10px 20px;
 `;
 
 const Img = styled.img`
-  width:50px;
+  width:40px;
 `;
 
 const A = styled.a`
-  margin-left: 20px; 
+  margin: 0 15px; 
   text-decoration: none;
 `
 

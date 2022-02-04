@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import BasicSelect, { BuscaPorTermos, BuscaValorMaximo, BuscaValorMinimo } from '../components/PageContratarLayoutGeral'
 import { ContainerFiltros, ContainerBuscaValores, ContainerCards } from '../components/PageContratarLayoutGeral';
 import { Button } from '@material-ui/core';
-import {getAllJobs} from '../services/integracoes';
+import { getAllJobs } from '../services/integracoes';
 
 
 export default class Contratar extends Component {
@@ -10,26 +10,30 @@ export default class Contratar extends Component {
     listJobs: []
   }
 
-  componentDidMount(){
+  componentDidMount() {
     getAllJobs(this.atualizarJobs)
   }
 
   atualizarJobs = (dados) => {
-    this.setState({listJobs: dados})
+    this.setState({ listJobs: dados })
   }
- 
+
+
+
   render() {
     //console.log(this.state.listJobs)
-    const newJobs = this.state.listJobs.map((service)=>{
+    const newJobs = this.state.listJobs.map((service) => {
+      console.log(service.id);
       return (
         <div key={service.id}>
-          <h3>{service.title}</h3> 
+          <h3>{service.title}</h3>
           <p>{service.description}</p>
           <p>{service.price}</p>
           <p>{service.paymentMethods}</p>
-        </div>  
-      )              
-  })
+          <button onClick={() => this.props.setDetailsId(service.id)}>Ver Detalhes</button>
+        </div>
+      )
+    })
     return (
       <div>
         <ContainerFiltros>
@@ -42,7 +46,8 @@ export default class Contratar extends Component {
         </ContainerFiltros>
 
         <ContainerCards>
-          <p>
+          {newJobs}
+          {/* <p>
             Título Card1 <br></br>
             Descrição<br></br>
             Preço<br></br>
@@ -69,10 +74,10 @@ export default class Contratar extends Component {
             Preço<br></br>
             Prazo<br></br>
             Pagamento
-          </p>
+          </p> */}
 
         </ContainerCards>
-        {newJobs}
+
       </div>
     )
   }
