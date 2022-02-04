@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 const ConteinerCard = styled.div`
   border: 1px solid #aaa1c8;
@@ -26,6 +28,15 @@ justify-content: space-evenly;
 }
 `
 export default class CardProduto extends Component {
+  state = {
+    desabilitado: this.props.disabled
+  }
+
+  carClick = () => {
+    this.setState({desabilitado: true})
+    this.props.carrinho(this.props.job)
+  }
+
   render() {
     return (
       <ConteinerCard>
@@ -39,13 +50,25 @@ export default class CardProduto extends Component {
             color='primary'>
             Detalhes
           </Button>
-          <Button
+          {!this.state.desabilitado? <IconButton 
+            color="secondary" 
+            aria-label="add to shopping cart"
+            onClick={this.carClick }>
+            <AddShoppingCartIcon fontSize="large" />
+          </IconButton>:
+            <IconButton
+            disabled
+            color="primary" 
+            aria-label="add to shopping cart">
+            <AddShoppingCartIcon fontSize="large" />
+          </IconButton>}
+          {/* <Button
             className="botao"
             variant='contained'
             color='primary'
             onClick={() => { this.props.carrinho(this.props.job) }}>
             Carrinho
-          </Button>
+          </Button> */}
         </BotaoCard>
       </ConteinerCard>
     )
