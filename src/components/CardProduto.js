@@ -14,7 +14,6 @@ const ConteinerCard = styled.div`
   box-shadow: 1px 1px  4px black;
   background-color: #f5e6e8;
   padding:10px ;
-     
 `
 
 const BotaoCard = styled.div`
@@ -26,6 +25,7 @@ justify-content: space-evenly;
 }
 `
 export default class CardProduto extends Component {
+
   render() {
     return (
       <ConteinerCard>
@@ -37,8 +37,7 @@ export default class CardProduto extends Component {
             className="botao"
             variant='contained'
             color='primary'
-
-          >
+            onClick={() => this.props.detalhesId(this.props.id)}>
             Detalhes
           </Button>
           <Button

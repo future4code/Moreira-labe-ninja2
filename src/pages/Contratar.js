@@ -118,7 +118,9 @@ export default class Contratar extends Component {
               prazo={service.dueDate}
               id={service.id}
               job={service}
-              carrinho={this.adicionarJobsCarrinho} />
+              carrinho={this.adicionarJobsCarrinho}
+              detalhesId={this.props.setDetailsId}
+            />
           </div>
         );
       });

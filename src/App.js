@@ -19,7 +19,7 @@ import { GlobalStyle } from './styleGeral'
 
 class App extends React.Component {
 	state = {
-		page: 'home',
+		page: 'contratar',
 		detalhesId: "",
 	}
 

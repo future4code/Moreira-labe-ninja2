@@ -70,7 +70,7 @@ export default class Detalhes extends Component {
       <Div>
         <h1>{this.state.oneJob.title}</h1>
         <p> Forma de Pagamento: {formasDePagamento} </p>
-        <p>Prazo: {this.state.oneJob.dueDate} Valor: R${this.state.oneJob.price},00 </p>
+        <p>Prazo: {this.state.oneJob.dueDate?.slice(0, 10)} Valor: R${this.state.oneJob.price},00 </p>
         <p>{this.state.oneJob.description}</p>
         <Button variant='contained' color='primary'> Adicionar ao Carrinho</Button>
         <Button variant='contained' color='primary' onClick={this.props.nextContratar}>Voltar à Lista</Button>
