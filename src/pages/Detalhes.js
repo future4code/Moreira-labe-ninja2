@@ -57,7 +57,7 @@ export default class Detalhes extends Component {
   render() {
     // console.log("estado2", this.state.oneJob.paymentMethods);
 
-    const formasDePagamento = this.state.oneJob.paymentMethods && this.state.oneJob.paymentMethods.map((payment) => {
+    const formasDePagamento = this.state.oneJob.paymentMethods?.map((payment) => {
       return (
         <p>
           {payment}
@@ -72,7 +72,7 @@ export default class Detalhes extends Component {
         <p> Forma de Pagamento: {formasDePagamento} </p>
         <p>Prazo: {this.state.oneJob.dueDate?.slice(0, 10)} Valor: R${this.state.oneJob.price},00 </p>
         <p>{this.state.oneJob.description}</p>
-        <Button variant='contained' color='primary'> Adicionar ao Carrinho</Button>
+        <Button variant='contained' color='primary' > Adicionar ao Carrinho</Button>
         <Button variant='contained' color='primary' onClick={this.props.nextContratar}>Voltar à Lista</Button>
       </Div>
     )

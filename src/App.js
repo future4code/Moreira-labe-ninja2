@@ -19,8 +19,9 @@ import { GlobalStyle } from './styleGeral'
 
 class App extends React.Component {
 	state = {
-		page: 'contratar',
+		page: 'home',
 		detalhesId: "",
+
 	}
 
 	nextCadastro = () => {
