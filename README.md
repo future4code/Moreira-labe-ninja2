@@ -3,10 +3,10 @@
 __________________________________________________________________________________________________________
 
 **Tecnologias utilizadas**:\
-[Material-Ui](https://mui.com/)
+[Material-Ui](https://mui.com/)\
 [React](https://reactjs.org/)\
 [Surge](https://surge.sh/)\
-[StyledComponents](https://styled-components.com/)\
+[Styled-Components](https://styled-components.com/)\
 [Visual Studio Code](https://code.visualstudio.com/docs/editor/vscode-web)
 
 
@@ -25,7 +25,7 @@ ________________________________________________________________________________
 
 
 **Site**\
-[LabeNijas](https://ceaseless-answer.surge.sh/)
+[Labenijas](https://ceaseless-answer.surge.sh/)
 
 
 **Imagens**\
