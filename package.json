@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
+    "@mui/icons-material": "^5.3.1",
+    "@mui/styled-engine-sc": "^5.3.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -12,7 +17,7 @@
     "react-dom": "^16.13.1",
     "react-jss": "8.0.0",
     "react-scripts": "^3.4.3",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
